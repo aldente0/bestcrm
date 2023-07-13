@@ -18,6 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/clients', function () {
+    return 'my clients';
+});
+
+Route::get('/orders', function ($id) {
+    return 'my orders';
+});
+
+Route::get('/order', function(){
+    return 'order 1';
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
