@@ -22,9 +22,9 @@ Route::get('/clients', function () {
     return 'my clients';
 });
 
-Route::get('/orders', function ($id) {
-    return 'my orders';
-});
+Route::get('/orders', function () {
+    return view('orders');
+})->middleware(['auth', 'verified'])->name('orders');
 
 Route::get('/order', function(){
     return 'order 1';
