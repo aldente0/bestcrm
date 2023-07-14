@@ -4,4 +4,5 @@
             {{ __('Orders') }}
         </h2>
     </x-slot>
+    {{-- TODO add simply table to show orders --}}
 </x-app-layout>

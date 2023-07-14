@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// TODO view and auth middleware
 Route::get('/clients', function () {
     return 'my clients';
 });
@@ -26,6 +27,7 @@ Route::get('/orders', function () {
     return view('orders');
 })->middleware(['auth', 'verified'])->name('orders');
 
+// TODO view and auth middleware
 Route::get('/order', function(){
     return 'order 1';
 });
@@ -34,6 +36,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// TODO add route profile.show
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
