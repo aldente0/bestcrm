@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -12,7 +14,11 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::user()->id;
+
+        return view('clients.index', [
+            'clients' => User::find($id)->clients,
+        ]);
     }
 
     /**
@@ -20,7 +26,22 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $clients = [
+            [
+                'name' => 'ООО "Магазин Мебели"',
+                'user_id' => 1
+            ],
+            [
+                'name' => 'ООО "Лучшие диваны"',
+                'user_id' => 2
+            ],
+        ];
+
+        foreach ($clients as $client) {
+            Client::create($client);
+        }
+
+        dd('created');
     }
 
     /**

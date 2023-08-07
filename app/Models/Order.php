@@ -18,10 +18,15 @@ class Order extends Model
         'quantity',
         'price',
         'user_id',
+        'client_id',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function client() : BelongsTo {
+        return $this->belongsTo(Client::class);
     }
 }

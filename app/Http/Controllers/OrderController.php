@@ -32,24 +32,28 @@ class OrderController extends Controller
                 'price' => 1000000,
                 'quantity' => 2,
                 'user_id' => 1,
+                'client_id' => 1,
             ],
             [
                 'product' => 'тумба прикроватная',
                 'price' => 100000,
                 'quantity' => 2,
                 'user_id' => 1,
+                'client_id' => 1,
             ],
             [
                 'product' => 'кровать',
                 'price' => 1000000,
                 'quantity' => 2,
                 'user_id' => 2,
+                'client_id' => 2,
             ],
             [
                 'product' => 'стол письменный',
                 'price' => 200000,
                 'quantity' => 2,
                 'user_id' => 2,
+                'client_id' => 2,
             ],
         ];
 
@@ -61,7 +65,7 @@ class OrderController extends Controller
     }
 
     public function delete() {
-        $orders = Order::all();
+        $orders = Order::withTrashed()->forceDelete();
 
         foreach ($orders as $order) {
             $order->delete();
