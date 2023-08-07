@@ -1,3 +1,3 @@
-<div class="text text-red-500">
+<div class="text text-{{$color}}-500">
     {{ $slot }}
 </div>
