@@ -50,5 +50,8 @@
             </div>
           </div>
         </div>
+        <x-text>
+            some text
+        </x-text>
       </div>
 </x-app-layout>
