@@ -26,6 +26,7 @@
                 <thead class="border-b font-medium dark:border-neutral-500">
                   <tr>
                     <th scope="col" class="px-6 py-4">Наименование</th>
+                    <th scope="col" class="px-6 py-4">Заказчик</th>
                     <th scope="col" class="px-6 py-4">Цена в руб.</th>
                     <th scope="col" class="px-6 py-4">Количество</th>
                     <th scope="col" class="px-6 py-4">Стоимость</th>
@@ -37,6 +38,7 @@
                     @foreach ($orders as $order)
                     <tr class="border-b dark:border-neutral-500">
                       <td class="whitespace-nowrap px-6 py-4">{{$order->product}}</td>
+                      <td class="whitespace-nowrap px-6 py-4">{{$order->client->name}}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{$order->price / 100}}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{$order->quantity}}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{$order->price * $order->quantity / 100}}</td>
@@ -50,7 +52,7 @@
             </div>
           </div>
         </div>
-        <x-text>
+        <x-text color="red">
             some text
         </x-text>
       </div>
