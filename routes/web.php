@@ -24,14 +24,7 @@ Route::get('/clients', function () {
     return 'my clients';
 });
 
-Route::get('/orders', function () {
-    return view('orders');
-})->middleware(['auth', 'verified'])->name('orders');
-
-// TODO view and auth middleware
-Route::get('/order', function(){
-    return 'order 1';
-});
+Route::get('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

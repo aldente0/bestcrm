@@ -60,6 +60,16 @@ class OrderController extends Controller
         dd('created');
     }
 
+    public function delete() {
+        $orders = Order::all();
+
+        foreach ($orders as $order) {
+            $order->delete();
+        }
+
+        dd('all deleted');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -95,8 +105,8 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy()
     {
-        //
+
     }
 }
