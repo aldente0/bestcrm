@@ -24,6 +24,12 @@
                     <x-nav-link :href="route('orders.delete')" :active="request()->routeIs('orders.delete')">
                         {{ __('delete orders') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                        {{ __('Clients') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('clients.create')" :active="request()->routeIs('clients.create')">
+                        {{ __('create clients') }}
+                    </x-nav-link>
                 </div>
             </div>
 
