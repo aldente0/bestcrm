@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,9 @@ Route::get('/', function () {
 });
 
 // TODO view and auth middleware
-Route::get('/clients', function () {
-    return 'my clients';
-});
+Route::resource('clients', ClientController::class)
+    ->only(['index', 'create'])
+    ->middleware(['auth', 'verified']);
 
 Route::get('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
 
