@@ -26,7 +26,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $clients = [
+
+        return view('clients.create');
+        /* $clients = [
             [
                 'name' => 'ООО "Магазин Мебели"',
                 'user_id' => 1
@@ -41,7 +43,7 @@ class ClientController extends Controller
             Client::create($client);
         }
 
-        dd('created');
+        dd('created'); */
     }
 
     /**
@@ -49,7 +51,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::user()->id;
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|min:2',
+            'email' => "required",
+        ]);
+
+        $validated['user_id'] = $user_id;
+
+        Client::create($validated);
+
+        return redirect(route('clients.create'));
     }
 
     /**
