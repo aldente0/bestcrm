@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 // TODO view and auth middleware
 Route::resource('clients', ClientController::class)
-    ->only(['index', 'create'])
+    ->only(['index', 'create', 'store'])
     ->middleware(['auth', 'verified']);
 
 Route::get('/orders/delete', [OrderController::class, 'delete'])->name('orders.delete');
@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('orders', OrderController::class)
-    ->only(['index', 'create'])
+    ->only(['index', 'create', 'store'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
