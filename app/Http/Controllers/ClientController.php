@@ -27,7 +27,9 @@ class ClientController extends Controller
     public function create()
     {
 
-        return view('clients.create');
+        return view('clients.create', [
+            'created' => session()->get('created'),
+        ]);
         /* $clients = [
             [
                 'name' => 'ООО "Магазин Мебели"',
@@ -62,7 +64,7 @@ class ClientController extends Controller
 
         Client::create($validated);
 
-        return redirect(route('clients.create'));
+        return redirect()->route('clients.create')->with(['created' => 1]);
     }
 
     /**
@@ -94,6 +96,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->forceDelete();
+
+        return redirect()->route('clients.index');
     }
 }
