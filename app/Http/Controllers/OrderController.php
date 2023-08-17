@@ -109,8 +109,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy(Order $order)
     {
+        $order->forceDelete();
 
+        return redirect()->route('orders.index');
     }
 }
