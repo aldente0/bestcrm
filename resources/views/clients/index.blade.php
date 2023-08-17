@@ -10,27 +10,47 @@
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div class="overflow-hidden">
               <table class="min-w-full text-left text-sm font-light">
-                <thead class="border-b font-medium dark:border-neutral-500">
-                  <tr>
-                    <th scope="col" class="px-6 py-4">Имя</th>
-                  </tr>
-                </thead>
+                    <thead class="border-b font-medium dark:border-neutral-500">
+                        <tr>
+                            <th scope="col" class="px-6 py-4">Имя</th>
+                        </tr>
+                    </thead>
                 <tbody>
-                  @isset($clients)
-                    @foreach ($clients as $client)
-                    <tr class="border-b dark:border-neutral-500">
-                      <td class="whitespace-nowrap px-6 py-4">{{$client->name}}</td>
-                    </tr>
-                    @endforeach
-                  @endisset
-
+                    @isset($clients)
+                        @foreach ($clients as $client)
+                            <tr class="border-b dark:border-neutral-500">
+                                <td class=" flex justify-between whitespace-nowrap px-6 py-4">{{$client->name}}
+                                    @if ($client->user->is(auth()->user()))
+                                        <x-dropdown>
+                                            <x-slot name="trigger">
+                                                <button>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                    </svg>
+                                                </button>
+                                            </x-slot>
+                                            <x-slot name="content">
+                                                <form method="POST" action="{{ route('clients.destroy', $client) }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <x-dropdown-link :href="route('clients.destroy', $client)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                        {{ __('Delete') }}
+                                                    </x-dropdown-link>
+                                                </form>
+                                            </x-slot>
+                                        </x-dropdown>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endisset
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <x-text color="red">
+        {{-- <x-text color="red">
             some text
-        </x-text>
+        </x-text> --}}
       </div>
 </x-app-layout>
