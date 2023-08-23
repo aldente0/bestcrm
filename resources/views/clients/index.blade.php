@@ -12,14 +12,17 @@
               <table class="min-w-full text-left text-sm font-light">
                     <thead class="border-b font-medium dark:border-neutral-500">
                         <tr>
-                            <th scope="col" class="px-6 py-4">Имя</th>
+                            <th scope="col" class="px-6 py-4">Name</th>
+                            <th scope="col" class=" px-6 py-4">Email</th>
                         </tr>
                     </thead>
                 <tbody>
                     @isset($clients)
                         @foreach ($clients as $client)
                             <tr class="border-b dark:border-neutral-500">
-                                <td class=" flex justify-between whitespace-nowrap px-6 py-4">{{$client->name}}
+                                <td class="whitespace-nowrap px-6 py-4">{{$client->name}}</td>
+                                <td class="flex whitespace-nowrap px-6 py-4">
+                                    {{$client->email}}
                                     @if ($client->user->is(auth()->user()))
                                         <x-dropdown>
                                             <x-slot name="trigger">

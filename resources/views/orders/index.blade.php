@@ -25,12 +25,12 @@
               <table class="min-w-full text-left text-sm font-light">
                 <thead class="border-b font-medium dark:border-neutral-500">
                   <tr>
-                    <th scope="col" class="px-6 py-4">Наименование</th>
-                    <th scope="col" class="px-6 py-4">Заказчик</th>
-                    <th scope="col" class="px-6 py-4">Цена в руб.</th>
-                    <th scope="col" class="px-6 py-4">Количество</th>
-                    <th scope="col" class="px-6 py-4">Стоимость</th>
-                    <th scope="col" class="px-6 py-4">Дата создания</th>
+                    <th scope="col" class="px-6 py-4">Product</th>
+                    <th scope="col" class="px-6 py-4">Customer</th>
+                    <th scope="col" class="px-6 py-4">price in rubles</th>
+                    <th scope="col" class="px-6 py-4">Quantity</th>
+                    <th scope="col" class="px-6 py-4">Cost</th>
+                    <th scope="col" class="px-6 py-4">Created at</th>
                   </tr>
                 </thead>
                 <tbody>

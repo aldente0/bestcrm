@@ -19,13 +19,13 @@
                         {{ __('Orders') }}
                     </x-nav-link>
                     <x-nav-link :href="route('orders.create')" :active="request()->routeIs('orders.create')">
-                        {{ __('create orders') }}
+                        {{ __('Create orders') }}
                     </x-nav-link>
                     <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clients') }}
                     </x-nav-link>
                     <x-nav-link :href="route('clients.create')" :active="request()->routeIs('clients.create')">
-                        {{ __('create clients') }}
+                        {{ __('Create clients') }}
                     </x-nav-link>
                 </div>
             </div>
