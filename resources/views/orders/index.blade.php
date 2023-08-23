@@ -3,20 +3,21 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Orders') }}
         </h2>
-        {{-- <div class="justify-between flex mt-3 h-28 width-[900] mx-auto">
-            <div>Кол-во заказов: {{count($orders)}}</div>
-            <div>Общая сумма товара: <?php
-                /* $sum = 0;
-                $quantity = 0;
-                foreach ($orders as $order) {
-                    $quantity += $order->quantity;
-                    $sum += $order->price * $order->quantity / 100;
-                } */
-            ?> {{$sum}}</div>
-            <div>Кол-во проданного товара: {{$quantity}}</div>
 
-        </div> --}}
     </x-slot>
+    <div class=" absolute top-16 right-1/2" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 1500)">
+    @if (session()->has('status'))
+        <div id="toast-success" class=" mx-auto flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+            <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                </svg>
+                <span class="sr-only">Check icon</span>
+            </div>
+            <div class="ml-3 text-sm font-normal">{{ session()->get('status') }}</div>
+        </div>
+    @endif
+    </div>
     {{-- TODO add simply table to show orders --}}
     <div class="flex flex-col w-10/12 mx-auto">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
