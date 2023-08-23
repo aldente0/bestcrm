@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,52 +27,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $orders = [
-            [
-                'product' => 'шкаф',
-                'price' => 1000000,
-                'quantity' => 2,
-                'user_id' => 1,
-                'client_id' => 1,
-            ],
-            [
-                'product' => 'тумба прикроватная',
-                'price' => 100000,
-                'quantity' => 2,
-                'user_id' => 1,
-                'client_id' => 1,
-            ],
-            [
-                'product' => 'кровать',
-                'price' => 1000000,
-                'quantity' => 2,
-                'user_id' => 2,
-                'client_id' => 2,
-            ],
-            [
-                'product' => 'стол письменный',
-                'price' => 200000,
-                'quantity' => 2,
-                'user_id' => 2,
-                'client_id' => 2,
-            ],
-        ];
-
-        foreach ($orders as $order) {
-            Order::create($order);
-        }
-
-        dd('created');
-    }
-
-    public function delete() {
-        $orders = Order::withTrashed()->forceDelete();
-
-        foreach ($orders as $order) {
-            $order->delete();
-        }
-
-        dd('all deleted');
+        return view('orders.create', [
+            'created' => session()->get('created'),
+        ]);
     }
 
     /**
@@ -79,7 +37,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'product' => 'required|string|max:255|min:2',
+            'price' => 'required',
+            'quantity' => 'required',
+            'client_email' => "required",
+        ]);
+
+        $user_id = Auth::user()->id;
+        $client_id = Client::where('email', $validated['client_email'])->first()->id;
+
+        $validated['product'] = mb_strtolower($validated['product']);
+        $validated['user_id'] = $user_id;
+        $validated['client_id'] = $client_id;
+        $validated['price'] = $validated['price'] * 100;
+
+        unset($validated['client_email']);
+
+        Order::create($validated);
+
+        return redirect()->route('orders.create')->with(['created' => 1]);
     }
 
     /**
