@@ -27,9 +27,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create', [
-            'created' => session()->get('created'),
-        ]);
+        return view('orders.create');
     }
 
     /**
@@ -56,7 +54,7 @@ class OrderController extends Controller
 
         Order::create($validated);
 
-        return redirect()->route('orders.create')->with(['created' => 1]);
+        return redirect()->route('orders.index')->with(['status' => 'New order was created']);
     }
 
     /**
@@ -90,6 +88,6 @@ class OrderController extends Controller
     {
         $order->forceDelete();
 
-        return redirect()->route('orders.index');
+        return redirect()->route('orders.index')->with(['status' => 'The order has been deleted']);
     }
 }
