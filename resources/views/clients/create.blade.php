@@ -21,8 +21,8 @@
             {{ __('Register New Client') }}
         </h2>
     </x-slot>
-    <div class=" mx-auto max-w-[900px] w-11/12">
-        <form action="{{ route('clients.store') }}" method="POST" class=" max-w-2xl mt-9 pl-4 rounded-2xl py-6 pr-16 bg-white">
+    <div class="mx-auto max-w-2xl mt-9 w-11/12">
+        <form action="{{ route('clients.store') }}" method="POST" class=" pl-4 rounded-2xl py-6 pr-16 bg-white"">
             @csrf
             <div class="mb-6">
                 <label for="name" class="block mb-2 text-sm font-medium
