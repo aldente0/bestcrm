@@ -60,7 +60,7 @@ class ClientController extends Controller
 
         $validated['user_id'] = $user_id;
 
-        Client::create($validated);
+        $request->user()->clients()->create($validated);
 
         return redirect()->route('clients.index')->with(['status' => 'New client was created']);
     }

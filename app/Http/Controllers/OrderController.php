@@ -52,7 +52,7 @@ class OrderController extends Controller
 
         unset($validated['client_email']);
 
-        Order::create($validated);
+        $request->user()->orders()->create($validated);
 
         return redirect()->route('orders.index')->with(['status' => 'New order was created']);
     }
