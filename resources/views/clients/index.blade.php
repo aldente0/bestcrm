@@ -22,9 +22,9 @@
         @isset($clients)
             @foreach ($clients as $client)
                 <tr class="border-b dark:border-neutral-500">
-                    <td class="whitespace-nowrap px-2 py-4">{{$client->name}}</td>
-                    <td class="flex whitespace-nowrap px-2 py-4">{{$client->email}}</td>
-                    <td>
+                    <x-table.td>{{$client->name}}</x-table.td>
+                    <x-table.td>{{$client->email}}</x-table.td>
+                    <x-table.td>
                         @if ($client->user->is(auth()->user()))
                             <x-dropdown>
                                 <x-slot name="trigger">
@@ -45,7 +45,7 @@
                                 </x-slot>
                             </x-dropdown>
                         @endif
-                    </td>
+                    </x-table.td>
                 </tr>
             @endforeach
         @endisset

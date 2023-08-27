@@ -23,13 +23,13 @@
         @isset($orders)
             @foreach ($orders as $order)
                 <tr class="border-b dark:border-neutral-500">
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->product}}</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->client->name}}</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->price / 100}}₽</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->quantity}}</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->price * $order->quantity / 100}}₽</td>
-                    <td class="flex whitespace-nowrap px-2 py-4">{{$order->created_at}}</td>
-                    <td class="px-1">
+                    <x-table.td>{{$order->product}}</x-table.td>
+                    <x-table.td>{{$order->client->name}}</x-table.td>
+                    <x-table.td>{{$order->price / 100}}₽</x-table.td>
+                    <x-table.td>{{$order->quantity}}</x-table.td>
+                    <x-table.td>{{$order->price * $order->quantity / 100}}₽</x-table.td>
+                    <x-table.td>{{$order->created_at}}</x-table.td>
+                    <x-table.td>
                         @if ($order->user->is(auth()->user()))
                             <x-dropdown>
                                 <x-slot name="trigger">
@@ -50,7 +50,7 @@
                                 </x-slot>
                             </x-dropdown>
                         @endif
-                    </td>
+                    </x-table.td>
                 </tr>
             @endforeach
         @endisset
