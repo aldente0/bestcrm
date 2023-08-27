@@ -18,24 +18,57 @@
     @endif
     </div>
     {{-- TODO add simply table to show orders --}}
-    <div class="flex flex-col w-10/12 mx-auto">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <x-table.table class="" :headers="['Name', 'Email']">
+        @isset($clients)
+            @foreach ($clients as $client)
+                <tr class="border-b dark:border-neutral-500">
+                    <td class="whitespace-nowrap px-2 py-4">{{$client->name}}</td>
+                    <td class="flex whitespace-nowrap px-2 py-4">{{$client->email}}</td>
+                    <td>
+                        @if ($client->user->is(auth()->user()))
+                            <x-dropdown>
+                                <x-slot name="trigger">
+                                    <button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        </svg>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <form method="POST" action="{{ route('clients.destroy', $client) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <x-dropdown-link :href="route('clients.destroy', $client)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                            {{ __('Delete') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        @endisset
+    </x-table.table>
+    {{-- <div class="flex flex-col w-10/12 mx-auto">
+        <div class="sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
+            <div>
               <table class="min-w-full text-left text-sm font-light">
                     <thead class="border-b font-medium dark:border-neutral-500">
                         <tr>
-                            <th scope="col" class="px-6 py-4">Name</th>
-                            <th scope="col" class=" px-6 py-4">Email</th>
+                            <th scope="col" class="px-2 py-4">Name</th>
+                            <th scope="col" class="px-2 py-4">Email</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                 <tbody>
                     @isset($clients)
                         @foreach ($clients as $client)
                             <tr class="border-b dark:border-neutral-500">
-                                <td class="whitespace-nowrap px-6 py-4">{{$client->name}}</td>
-                                <td class="flex whitespace-nowrap px-6 py-4">
-                                    {{$client->email}}
+                                <td class="whitespace-nowrap px-2 py-4">{{$client->name}}</td>
+                                <td class="flex whitespace-nowrap px-2 py-4">{{$client->email}}</td>
+                                <td>
                                     @if ($client->user->is(auth()->user()))
                                         <x-dropdown>
                                             <x-slot name="trigger">
@@ -65,8 +98,5 @@
             </div>
           </div>
         </div>
-        {{-- <x-text color="red">
-            some text
-        </x-text> --}}
-      </div>
+      </div> --}}
 </x-app-layout>
