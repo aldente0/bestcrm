@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// TODO view and auth middleware
 Route::resource('clients', ClientController::class)
     ->only(['index', 'create', 'store', 'destroy'])
     ->middleware(['auth', 'verified']);
@@ -29,7 +28,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// TODO add route profile.show
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
