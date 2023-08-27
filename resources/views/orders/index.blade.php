@@ -25,9 +25,9 @@
                 <tr class="border-b dark:border-neutral-500">
                     <td class="whitespace-nowrap px-2 py-4">{{$order->product}}</td>
                     <td class="whitespace-nowrap px-2 py-4">{{$order->client->name}}</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->price / 100}}</td>
+                    <td class="whitespace-nowrap px-2 py-4">{{$order->price / 100}}₽</td>
                     <td class="whitespace-nowrap px-2 py-4">{{$order->quantity}}</td>
-                    <td class="whitespace-nowrap px-2 py-4">{{$order->price * $order->quantity / 100}}</td>
+                    <td class="whitespace-nowrap px-2 py-4">{{$order->price * $order->quantity / 100}}₽</td>
                     <td class="flex whitespace-nowrap px-2 py-4">{{$order->created_at}}</td>
                     <td class="px-1">
                         @if ($order->user->is(auth()->user()))
